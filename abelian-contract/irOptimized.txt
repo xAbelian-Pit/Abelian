@@ -1,0 +1,1867 @@
+Optimized IR:
+/*=====================================================*
+ *                       WARNING                       *
+ *  Solidity to Yul compilation is still EXPERIMENTAL  *
+ *       It can result in LOSS OF FUNDS or worse       *
+ *                !USE AT YOUR OWN RISK!               *
+ *=====================================================*/
+
+/// @use-src 0:"contracts/DotRegistry.sol", 1:"contracts/interfaces/Dot.sol", 6:"node_modules/@openzeppelin/contracts/access/Ownable.sol", 7:"node_modules/@openzeppelin/contracts/utils/Context.sol"
+object "DotRegistry_844" {
+    code {
+        {
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            mstore(64, 160)
+            if callvalue() { revert(0, 0) }
+            let programSize := datasize("DotRegistry_844")
+            let argSize := sub(codesize(), programSize)
+            let memoryDataOffset := allocate_memory(argSize)
+            codecopy(memoryDataOffset, programSize, argSize)
+            if slt(sub(add(memoryDataOffset, argSize), memoryDataOffset), 32)
+            {
+                revert(/** @src -1:-1:-1 */ 0, 0)
+            }
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            let value := mload(memoryDataOffset)
+            let _1 := sub(shl(160, 1), 1)
+            if iszero(eq(value, and(value, _1)))
+            {
+                revert(/** @src -1:-1:-1 */ 0, 0)
+            }
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            let _2 := sload(/** @src -1:-1:-1 */ 0)
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            sstore(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ or(and(_2, not(sub(shl(160, 1), 1))), /** @src 7:719:729  "msg.sender" */ caller()))
+            /// @src 6:2573:2613  "OwnershipTransferred(oldOwner, newOwner)"
+            log3(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(64), /** @src -1:-1:-1 */ 0, /** @src 6:2573:2613  "OwnershipTransferred(oldOwner, newOwner)" */ 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(_2, _1), /** @src 7:719:729  "msg.sender" */ caller())
+            /// @src 0:1187:1190  "[2]"
+            let expr_mpos := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ allocate_memory_1259()
+            mstore(expr_mpos, /** @src 0:1188:1189  "2" */ 0x02)
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            copy_array_to_storage_from_array_uint8_to_array_uint16_dyn(expr_mpos)
+            /// @src 0:1364:1365  "0"
+            update_storage_value_offsett_rational_by_to_uint32()
+            /// @src 0:1929:1960  "records[0x0].owner = msg.sender"
+            update_storage_value_offsett_address_to_address(/** @src 0:1929:1941  "records[0x0]" */ mapping_index_access_mapping_bytes32_struct_Record_storage_of_rational_by(), /** @src 7:719:729  "msg.sender" */ caller())
+            /// @src 0:1970:2011  "CORE_BRIDGE_ADDRESS = _coreBridgedAddress"
+            mstore(128, value)
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            let _3 := mload(64)
+            let _4 := datasize("DotRegistry_844_deployed")
+            codecopy(_3, dataoffset("DotRegistry_844_deployed"), _4)
+            setimmutable(_3, "28", mload(/** @src 0:1970:2011  "CORE_BRIDGE_ADDRESS = _coreBridgedAddress" */ 128))
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            return(_3, _4)
+        }
+        function panic_error_0x41()
+        {
+            mstore(0, shl(224, 0x4e487b71))
+            mstore(4, 0x41)
+            revert(0, 0x24)
+        }
+        function allocate_memory_1259() -> memPtr
+        {
+            memPtr := mload(64)
+            let newFreePtr := add(memPtr, 32)
+            if or(gt(newFreePtr, sub(shl(64, 1), 1)), lt(newFreePtr, memPtr)) { panic_error_0x41() }
+            mstore(64, newFreePtr)
+        }
+        function allocate_memory(size) -> memPtr
+        {
+            memPtr := mload(64)
+            let newFreePtr := add(memPtr, and(add(size, 31), not(31)))
+            if or(gt(newFreePtr, sub(shl(64, 1), 1)), lt(newFreePtr, memPtr)) { panic_error_0x41() }
+            mstore(64, newFreePtr)
+        }
+        function cleanup_uint8(value) -> cleaned
+        { cleaned := and(value, 0xff) }
+        function array_dataslot_array_uint16_dyn_storage() -> data
+        {
+            mstore(0, /** @src 0:1187:1190  "[2]" */ 0x04)
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            data := keccak256(0, 0x20)
+        }
+        function update_storage_value_uint8_to_uint16(slot, offset, value)
+        {
+            let _1 := sload(slot)
+            let shiftBits := shl(3, offset)
+            let mask := shl(shiftBits, 0xffff)
+            sstore(slot, or(and(_1, not(mask)), and(shl(shiftBits, and(value, 0xff)), mask)))
+        }
+        function copy_array_to_storage_from_array_uint8_to_array_uint16_dyn(value)
+        {
+            let oldLen := sload(/** @src 0:1187:1190  "[2]" */ 0x04)
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            let _1 := 0x01
+            sstore(/** @src 0:1187:1190  "[2]" */ 0x04, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+            if lt(_1, oldLen)
+            {
+                let _2 := 0
+                mstore(_2, /** @src 0:1187:1190  "[2]" */ 0x04)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let data := keccak256(_2, 0x20)
+                let deleteEnd := add(data, shr(/** @src 0:1187:1190  "[2]" */ 0x04, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ add(oldLen, 15)))
+                sstore(data, and(65535, sload(data)))
+                let start := add(data, _1)
+                for { } lt(start, deleteEnd) { start := add(start, _1) }
+                { sstore(start, _2) }
+            }
+            let srcPtr := value
+            let elementSlot := array_dataslot_array_uint16_dyn_storage()
+            let elementOffset := 0
+            let i := elementOffset
+            for { } lt(i, _1) { i := add(i, _1) }
+            {
+                update_storage_value_uint8_to_uint16(elementSlot, elementOffset, cleanup_uint8(mload(srcPtr)))
+                srcPtr := add(srcPtr, 32)
+                elementOffset := add(elementOffset, 2)
+                if gt(elementOffset, 30)
+                {
+                    elementOffset := 0
+                    elementSlot := add(elementSlot, _1)
+                }
+            }
+        }
+        function update_storage_value_offsett_rational_by_to_uint32()
+        {
+            sstore(/** @src 0:1364:1365  "0" */ 0x06, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(sload(/** @src 0:1364:1365  "0" */ 0x06), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(0xffffffff)))
+        }
+        function mapping_index_access_mapping_bytes32_struct_Record_storage_of_rational_by() -> dataSlot
+        {
+            mstore(/** @src 6:2525:2531  "_owner" */ 0x00, 0x00)
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            mstore(0x20, /** @src 0:1187:1190  "[2]" */ 1)
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            dataSlot := keccak256(/** @src 6:2525:2531  "_owner" */ 0x00, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40)
+        }
+        function update_storage_value_offsett_address_to_address(slot, value)
+        {
+            sstore(slot, or(and(sload(slot), not(sub(shl(160, 1), 1))), and(value, sub(shl(160, 1), 1))))
+        }
+    }
+    /// @use-src 0:"contracts/DotRegistry.sol", 4:"contracts/libs/BytesLib.sol", 6:"node_modules/@openzeppelin/contracts/access/Ownable.sol", 7:"node_modules/@openzeppelin/contracts/utils/Context.sol"
+    object "DotRegistry_844_deployed" {
+        code {
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _1 := 64
+                mstore(_1, 128)
+                if iszero(lt(calldatasize(), 4))
+                {
+                    let _2 := 0
+                    switch shr(224, calldataload(_2))
+                    case 0x0178b8bf {
+                        if callvalue() { revert(_2, _2) }
+                        let ret := fun_resolver(abi_decode_bytes32(calldatasize()))
+                        let memPos := mload(_1)
+                        return(memPos, sub(abi_encode_address(memPos, ret), memPos))
+                    }
+                    case 0x01e64725 {
+                        if callvalue() { revert(_2, _2) }
+                        let ret_1, ret_2, ret_3 := getter_fun_records(abi_decode_bytes32(calldatasize()))
+                        let memPos_1 := mload(_1)
+                        return(memPos_1, sub(abi_encode_address_address_uint64(memPos_1, ret_1, ret_2, ret_3), memPos_1))
+                    }
+                    case 0x02571be3 {
+                        if callvalue() { revert(_2, _2) }
+                        let ret_4 := fun_owner(abi_decode_bytes32(calldatasize()))
+                        let memPos_2 := mload(_1)
+                        return(memPos_2, sub(abi_encode_address(memPos_2, ret_4), memPos_2))
+                    }
+                    case 0x0d88c7d8 {
+                        if callvalue() { revert(_2, _2) }
+                        let param, param_1 := abi_decode_bytes32t_uint16(calldatasize())
+                        let ret_5 := /** @src 0:944:1010  "mapping(bytes32 => mapping(uint16 => bool)) public pendingResolved" */ read_from_storage_split_dynamic_bool(mapping_index_access_mapping_uint16_bool_of_uint16(mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ param), param_1))
+                        let memPos_3 := mload(_1)
+                        return(memPos_3, sub(abi_encode_bool(memPos_3, ret_5), memPos_3))
+                    }
+                    case 0x13de86cb {
+                        if callvalue() { revert(_2, _2) }
+                        let ret_6 := getter_fun_registryDelegates(abi_decode_bytes32(calldatasize()))
+                        let memPos_4 := mload(_1)
+                        return(memPos_4, sub(abi_encode_bool(memPos_4, ret_6), memPos_4))
+                    }
+                    case 0x16a25cbd {
+                        if callvalue() { revert(_2, _2) }
+                        let ret_7 := fun_ttl(abi_decode_bytes32(calldatasize()))
+                        let memPos_5 := mload(_1)
+                        return(memPos_5, sub(abi_encode_uint64(memPos_5, ret_7), memPos_5))
+                    }
+                    case 0x1808eeb8 {
+                        if callvalue() { revert(_2, _2) }
+                        let ret_8 := getter_fun_pending(abi_decode_bytes32(calldatasize()))
+                        let memPos_6 := mload(_1)
+                        return(memPos_6, sub(abi_encode_address(memPos_6, ret_8), memPos_6))
+                    }
+                    case 0x1fe8d0ba {
+                        if callvalue() { revert(_2, _2) }
+                        let ret_9 := fun_encodeRegistration(abi_decode_struct_Registration(calldatasize()))
+                        let memPos_7 := mload(_1)
+                        return(memPos_7, sub(abi_encode_bytes(memPos_7, ret_9), memPos_7))
+                    }
+                    case 0x5b0fc9c3 {
+                        if callvalue() { revert(_2, _2) }
+                        let param_2, param_3 := abi_decode_bytes32t_address(calldatasize())
+                        let ret_10 := /** @src 0:2963:2978  "uint64 sequence" */ modifier_authorized(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ param_2, param_3)
+                        let memPos_8 := mload(_1)
+                        return(memPos_8, sub(abi_encode_uint64(memPos_8, ret_10), memPos_8))
+                    }
+                    case 0x715018a6 {
+                        if callvalue() { revert(_2, _2) }
+                        abi_decode(calldatasize())
+                        /// @src 6:1831:1932  "function renounceOwnership() public virtual onlyOwner {..."
+                        modifier_onlyOwner_1474()
+                        /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                        return(mload(_1), _2)
+                    }
+                    case 0x84acd1bb {
+                        if callvalue() { revert(_2, _2) }
+                        abi_decode(calldatasize())
+                        let memPos_9 := mload(_1)
+                        return(memPos_9, sub(abi_encode_address(memPos_9, and(/** @src 0:10178:10197  "CORE_BRIDGE_ADDRESS" */ loadimmutable("28"), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1))), memPos_9))
+                    }
+                    case 0x8da5cb5b {
+                        if callvalue() { revert(_2, _2) }
+                        abi_decode(calldatasize())
+                        let ret_11 := and(sload(_2), sub(shl(160, 1), 1))
+                        let memPos_10 := mload(_1)
+                        return(memPos_10, sub(abi_encode_address(memPos_10, ret_11), memPos_10))
+                    }
+                    case 0xa70500a0 {
+                        if callvalue() { revert(_2, _2) }
+                        let ret_12 := fun_pendingOwner(abi_decode_bytes32(calldatasize()))
+                        let memPos_11 := mload(_1)
+                        return(memPos_11, sub(abi_encode_address(memPos_11, ret_12), memPos_11))
+                    }
+                    case 0xb8421046 {
+                        if callvalue() { revert(_2, _2) }
+                        let param_4, param_5 := abi_decode_bytes_calldata(calldatasize())
+                        let ret_13 := fun_receiveSetOwner(param_4, param_5)
+                        let memPos_12 := mload(_1)
+                        return(memPos_12, sub(abi_encode_uint64(memPos_12, ret_13), memPos_12))
+                    }
+                    case 0xce7dad3c {
+                        if callvalue() { revert(_2, _2) }
+                        let param_6, param_7 := abi_decode_addresst_bool(calldatasize())
+                        /// @src 0:2024:2221  "function setRegistryDelegate(address delegate, bool permitted) external onlyOwner {..."
+                        modifier_onlyOwner(param_6, param_7)
+                        /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                        return(mload(_1), _2)
+                    }
+                    case 0xcf408823 {
+                        if callvalue() { revert(_2, _2) }
+                        let param_8, param_9, param_10, param_11 := abi_decode_bytes32t_addresst_addresst_uint64(calldatasize())
+                        /// @ast-id 168 @src 0:2227:2459  "function setRecord(..."
+                        /** @ast-id 168 */ /** @ast-id 168 */ fun_setRecord(/** @ast-id 168 */ param_8, /** @ast-id 168 */ param_9)
+                        /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                        return(mload(_1), _2)
+                    }
+                    case 0xf2fde38b {
+                        if callvalue() { revert(_2, _2) }
+                        /// @src 6:2081:2279  "function transferOwnership(address newOwner) public virtual onlyOwner {..."
+                        modifier_onlyOwner_1490(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ abi_decode_address(calldatasize()))
+                        return(mload(_1), _2)
+                    }
+                    case 0xf79fe538 {
+                        if callvalue() { revert(_2, _2) }
+                        let ret_14 := fun_recordExists(abi_decode_bytes32(calldatasize()))
+                        let memPos_13 := mload(_1)
+                        return(memPos_13, sub(abi_encode_bool(memPos_13, ret_14), memPos_13))
+                    }
+                }
+                revert(0, 0)
+            }
+            function abi_decode_bytes32(dataEnd) -> value0
+            {
+                if slt(add(dataEnd, not(3)), 32) { revert(0, 0) }
+                value0 := calldataload(4)
+            }
+            function cleanup_address(value) -> cleaned
+            {
+                cleaned := and(value, sub(shl(160, 1), 1))
+            }
+            function abi_encode_address(headStart, value0) -> tail
+            {
+                tail := add(headStart, 32)
+                mstore(headStart, and(value0, sub(shl(160, 1), 1)))
+            }
+            function mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32(key) -> dataSlot
+            {
+                mstore(0, key)
+                mstore(0x20, /** @src 0:944:1010  "mapping(bytes32 => mapping(uint16 => bool)) public pendingResolved" */ 3)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                dataSlot := keccak256(0, 0x40)
+            }
+            function mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7081(key) -> dataSlot
+            {
+                mstore(0, key)
+                mstore(0x20, /** @src 0:1799:1806  "pending" */ 0x02)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                dataSlot := keccak256(0, 0x40)
+            }
+            function mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7082(key) -> dataSlot
+            {
+                mstore(0, key)
+                mstore(0x20, /** @src 0:6182:6197  "pendingResolved" */ 0x03)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                dataSlot := keccak256(0, 0x40)
+            }
+            function mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7113(key) -> dataSlot
+            {
+                mstore(0, key)
+                mstore(0x20, /** @src 0:7239:7256  "registryDelegates" */ 0x05)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                dataSlot := keccak256(0, 0x40)
+            }
+            function mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7130(key) -> dataSlot
+            {
+                mstore(0, key)
+                mstore(0x20, /** @src 0:7437:7438  "1" */ 0x01)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                dataSlot := keccak256(0, 0x40)
+            }
+            function read_from_storage_split_offset_address(slot) -> value
+            {
+                value := and(sload(slot), sub(shl(160, 1), 1))
+            }
+            function cleanup_from_storage_uint64(value) -> cleaned
+            {
+                cleaned := and(value, 0xffffffffffffffff)
+            }
+            /// @ast-id 33 @src 0:667:708  "mapping(bytes32 => Record) public records"
+            function getter_fun_records(key) -> ret, ret_1, ret_2
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ key)
+                mstore(0x20, /** @src 0:667:708  "mapping(bytes32 => Record) public records" */ 1)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let dataSlot := keccak256(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40)
+                let _1 := sub(shl(160, 1), 1)
+                /// @src 0:667:708  "mapping(bytes32 => Record) public records"
+                ret := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(sload(/** @src 0:667:708  "mapping(bytes32 => Record) public records" */ dataSlot), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                let _2 := sload(/** @src 0:667:708  "mapping(bytes32 => Record) public records" */ add(dataSlot, 1))
+                ret_1 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(_2, _1)
+                /// @src 0:667:708  "mapping(bytes32 => Record) public records"
+                ret_2 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(shr(160, _2), 0xffffffffffffffff)
+            }
+            function abi_encode_address_address_uint64(headStart, value0, value1, value2) -> tail
+            {
+                tail := add(headStart, 96)
+                let _1 := sub(shl(160, 1), 1)
+                mstore(headStart, and(value0, _1))
+                mstore(add(headStart, 32), and(value1, _1))
+                mstore(add(headStart, 64), and(value2, 0xffffffffffffffff))
+            }
+            function cleanup_uint16(value) -> cleaned
+            { cleaned := and(value, 0xffff) }
+            function validator_revert_uint16(value)
+            {
+                if iszero(eq(value, and(value, 0xffff))) { revert(0, 0) }
+            }
+            function abi_decode_bytes32t_uint16(dataEnd) -> value0, value1
+            {
+                if slt(add(dataEnd, not(3)), 64) { revert(0, 0) }
+                value0 := calldataload(4)
+                let value := calldataload(36)
+                validator_revert_uint16(value)
+                value1 := value
+            }
+            function mapping_index_access_mapping_uint16_bool_of_uint16(slot, key) -> dataSlot
+            {
+                mstore(0, and(key, 0xffff))
+                mstore(0x20, slot)
+                dataSlot := keccak256(0, 0x40)
+            }
+            function cleanup_from_storage_bool(value) -> cleaned
+            { cleaned := and(value, 0xff) }
+            function read_from_storage_split_dynamic_bool(slot) -> value
+            {
+                value := and(sload(slot), 0xff)
+            }
+            function cleanup_bool(value) -> cleaned
+            {
+                cleaned := iszero(iszero(value))
+            }
+            function abi_encode_bool(headStart, value0) -> tail
+            {
+                tail := add(headStart, 32)
+                mstore(headStart, iszero(iszero(value0)))
+            }
+            /// @ast-id 55 @src 0:1285:1334  "mapping(bytes32 => bool) public registryDelegates"
+            function getter_fun_registryDelegates(key) -> ret
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src 0:1285:1334  "mapping(bytes32 => bool) public registryDelegates" */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ key)
+                mstore(0x20, /** @src 0:1285:1334  "mapping(bytes32 => bool) public registryDelegates" */ 5)
+                ret := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(sload(keccak256(/** @src 0:1285:1334  "mapping(bytes32 => bool) public registryDelegates" */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40)), 0xff)
+            }
+            function abi_encode_uint64(headStart, value0) -> tail
+            {
+                tail := add(headStart, 32)
+                mstore(headStart, and(value0, 0xffffffffffffffff))
+            }
+            /// @ast-id 38 @src 0:842:884  "mapping(bytes32 => address) public pending"
+            function getter_fun_pending(key) -> ret
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src 0:842:884  "mapping(bytes32 => address) public pending" */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ key)
+                mstore(0x20, /** @src 0:842:884  "mapping(bytes32 => address) public pending" */ 2)
+                ret := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(sload(keccak256(/** @src 0:842:884  "mapping(bytes32 => address) public pending" */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40)), sub(shl(160, 1), 1))
+            }
+            function panic_error_0x41()
+            {
+                mstore(0, shl(224, 0x4e487b71))
+                mstore(4, 0x41)
+                revert(0, 0x24)
+            }
+            function finalize_allocation_7078(memPtr)
+            {
+                let newFreePtr := add(memPtr, 224)
+                if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { panic_error_0x41() }
+                mstore(64, newFreePtr)
+            }
+            function finalize_allocation_7110(memPtr)
+            {
+                let newFreePtr := add(memPtr, 0x80)
+                if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { panic_error_0x41() }
+                mstore(64, newFreePtr)
+            }
+            function finalize_allocation_13328(memPtr)
+            {
+                let newFreePtr := add(memPtr, 160)
+                if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { panic_error_0x41() }
+                mstore(64, newFreePtr)
+            }
+            function finalize_allocation(memPtr, size)
+            {
+                let newFreePtr := add(memPtr, and(add(size, 31), not(31)))
+                if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { panic_error_0x41() }
+                mstore(64, newFreePtr)
+            }
+            function allocate_memory() -> memPtr
+            {
+                memPtr := mload(64)
+                finalize_allocation_7078(memPtr)
+            }
+            function allocate_memory_7112() -> memPtr
+            {
+                memPtr := mload(64)
+                let newFreePtr := add(memPtr, 0x0160)
+                if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { panic_error_0x41() }
+                mstore(64, newFreePtr)
+            }
+            function validator_revert_uint8(value)
+            {
+                if iszero(eq(value, and(value, 0xff))) { revert(0, 0) }
+            }
+            function validator_revert_uint64(value)
+            {
+                if iszero(eq(value, and(value, 0xffffffffffffffff))) { revert(0, 0) }
+            }
+            function abi_decode_struct_Registration(dataEnd) -> value0
+            {
+                if slt(add(dataEnd, not(3)), 224) { revert(0, 0) }
+                let memPtr := mload(64)
+                finalize_allocation_7078(memPtr)
+                let value := calldataload(4)
+                validator_revert_uint8(value)
+                mstore(memPtr, value)
+                mstore(add(memPtr, 32), calldataload(36))
+                mstore(add(memPtr, 64), calldataload(68))
+                mstore(add(memPtr, 96), calldataload(100))
+                let value_1 := calldataload(132)
+                validator_revert_uint64(value_1)
+                mstore(add(memPtr, 128), value_1)
+                let value_2 := calldataload(164)
+                validator_revert_uint16(value_2)
+                mstore(add(memPtr, 160), value_2)
+                let value_3 := calldataload(196)
+                validator_revert_uint8(value_3)
+                mstore(add(memPtr, 192), value_3)
+                value0 := memPtr
+            }
+            function copy_memory_to_memory(src, dst, length)
+            {
+                let i := 0
+                for { } lt(i, length) { i := add(i, 32) }
+                {
+                    mstore(add(dst, i), mload(add(src, i)))
+                }
+                if gt(i, length) { mstore(add(dst, length), 0) }
+            }
+            function abi_encode_bytes_memory_ptr(value, pos) -> end
+            {
+                let length := mload(value)
+                mstore(pos, length)
+                copy_memory_to_memory(add(value, 0x20), add(pos, 0x20), length)
+                end := add(add(pos, and(add(length, 31), not(31))), 0x20)
+            }
+            function abi_encode_bytes(headStart, value0) -> tail
+            {
+                mstore(headStart, 32)
+                tail := abi_encode_bytes_memory_ptr(value0, add(headStart, 32))
+            }
+            function abi_decode_bytes32t_address(dataEnd) -> value0, value1
+            {
+                if slt(add(dataEnd, not(3)), 64) { revert(0, 0) }
+                value0 := calldataload(4)
+                let value := calldataload(36)
+                if iszero(eq(value, and(value, sub(shl(160, 1), 1))))
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                value1 := value
+            }
+            function abi_decode(dataEnd)
+            {
+                if slt(add(dataEnd, not(3)), 0) { revert(0, 0) }
+            }
+            function abi_decode_bytes_calldata(dataEnd) -> value0, value1
+            {
+                if slt(add(dataEnd, not(3)), 32) { revert(0, 0) }
+                let offset := calldataload(4)
+                let _1 := 0xffffffffffffffff
+                if gt(offset, _1) { revert(0, 0) }
+                if iszero(slt(add(offset, 35), dataEnd))
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let length := calldataload(add(4, offset))
+                if gt(length, _1)
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                if gt(add(add(offset, length), 36), dataEnd)
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                value0 := add(offset, 36)
+                value1 := length
+            }
+            function validator_revert_bool(value)
+            {
+                if iszero(eq(value, iszero(iszero(value)))) { revert(0, 0) }
+            }
+            function abi_decode_addresst_bool(dataEnd) -> value0, value1
+            {
+                if slt(add(dataEnd, not(3)), 64) { revert(0, 0) }
+                let value := calldataload(4)
+                if iszero(eq(value, and(value, sub(shl(160, 1), 1))))
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                value0 := value
+                let value_1 := calldataload(36)
+                validator_revert_bool(value_1)
+                value1 := value_1
+            }
+            function abi_decode_bytes32t_addresst_addresst_uint64(dataEnd) -> value0, value1, value2, value3
+            {
+                if slt(add(dataEnd, not(3)), 128) { revert(0, 0) }
+                value0 := calldataload(4)
+                let value := calldataload(36)
+                let _1 := sub(shl(160, 1), 1)
+                if iszero(eq(value, and(value, _1)))
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                value1 := value
+                let value_1 := calldataload(68)
+                if iszero(eq(value_1, and(value_1, _1)))
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                value2 := value_1
+                let value_2 := calldataload(100)
+                validator_revert_uint64(value_2)
+                value3 := value_2
+            }
+            function abi_decode_address(dataEnd) -> value0
+            {
+                if slt(add(dataEnd, not(3)), 32) { revert(0, 0) }
+                let value := calldataload(4)
+                if iszero(eq(value, and(value, sub(shl(160, 1), 1))))
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                value0 := value
+            }
+            /// @ast-id 1447 @src 6:1063:1125  "modifier onlyOwner() {..."
+            function modifier_onlyOwner(var_delegate, var_permitted)
+            {
+                fun_checkOwner()
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                if /** @src 0:2124:2146  "delegate != address(0)" */ iszero(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(/** @src 0:2124:2146  "delegate != address(0)" */ var_delegate, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1)))
+                {
+                    revert(/** @src 0:2144:2145  "0" */ 0x00, 0x00)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src 0:2144:2145  "0" */ 0x00, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(shl(/** @src 0:11420:11422  "96" */ 0x60, /** @src 0:2175:2201  "addressToBytes32(delegate)" */ var_delegate), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(0xffffffffffffffffffffffff)))
+                mstore(0x20, /** @src 0:2157:2174  "registryDelegates" */ 0x05)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _1 := keccak256(/** @src 0:2144:2145  "0" */ 0x00, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40)
+                let value := and(sload(_1), not(255))
+                sstore(_1, or(value, and(iszero(iszero(var_permitted)), 255)))
+            }
+            function update_storage_value_offsett_bool_to_bool(slot)
+            {
+                sstore(slot, or(and(sload(slot), not(255)), /** @src 0:6228:6232  "true" */ 0x01))
+            }
+            /// @ast-id 168 @src 0:2227:2459  "function setRecord(..."
+            function fun_setRecord(var_node, var_owner)
+            {
+                /// @src 0:2963:2978  "uint64 sequence"
+                pop(modifier_authorized(/** @src 0:2379:2400  "setOwner(node, owner)" */ var_node, var_owner))
+            }
+            /// @ast-id 87 @src 0:1479:1741  "modifier authorized(bytes32 node) {..."
+            function modifier_authorized(var_node, var_owner) -> _1
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _2 := 0
+                mstore(_2, var_node)
+                let _3 := 0x20
+                mstore(_3, /** @src 0:1539:1546  "records" */ 0x01)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _4 := sub(shl(160, 1), 1)
+                let _5 := 0x40
+                let cleaned := and(sload(keccak256(_2, _5)), _4)
+                /// @src 0:1568:1724  "if (owner != address(0)) {..."
+                if /** @src 0:1572:1591  "owner != address(0)" */ iszero(iszero(cleaned))
+                /// @src 0:1568:1724  "if (owner != address(0)) {..."
+                {
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    if iszero(/** @src 0:1615:1634  "owner == msg.sender" */ eq(cleaned, /** @src 0:1624:1634  "msg.sender" */ caller()))
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    {
+                        let memPtr := mload(_5)
+                        mstore(memPtr, shl(229, 4594637))
+                        mstore(add(memPtr, 4), _3)
+                        mstore(add(memPtr, 36), 39)
+                        mstore(add(memPtr, 68), "Unauthorized to set record for t")
+                        mstore(add(memPtr, 100), "he node")
+                        revert(memPtr, 132)
+                    }
+                }
+                mstore(_2, var_node)
+                mstore(_3, /** @src 0:1799:1806  "pending" */ 0x02)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                if iszero(/** @src 0:1799:1826  "pending[node] == address(0)" */ iszero(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(sload(keccak256(_2, _5)), _4)))
+                {
+                    let memPtr_1 := mload(_5)
+                    mstore(memPtr_1, shl(229, 4594637))
+                    mstore(add(memPtr_1, 4), _3)
+                    mstore(add(memPtr_1, 36), 23)
+                    mstore(add(memPtr_1, 68), "Registration is pending")
+                    revert(memPtr_1, 100)
+                }
+                /// @src 0:6151:6172  "pending[node] = owner"
+                update_storage_value_offsett_address_to_address(/** @src 0:6151:6164  "pending[node]" */ mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7081(var_node), /** @src 0:6151:6172  "pending[node] = owner" */ var_owner)
+                /// @src 0:6182:6203  "pendingResolved[node]"
+                let _6 := mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7082(var_node)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _7 := and(/** @src 0:10178:10197  "CORE_BRIDGE_ADDRESS" */ loadimmutable("28"), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _4)
+                /// @src 0:6204:6224  "wormhole().chainId()"
+                if iszero(extcodesize(_7))
+                {
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    revert(_2, _2)
+                }
+                /// @src 0:6204:6224  "wormhole().chainId()"
+                let _8 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(_5)
+                let _9 := shl(225, 0x4d4502c9)
+                /// @src 0:6204:6224  "wormhole().chainId()"
+                mstore(_8, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _9)
+                /// @src 0:6204:6224  "wormhole().chainId()"
+                let _10 := staticcall(gas(), _7, _8, 4, _8, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _3)
+                /// @src 0:6204:6224  "wormhole().chainId()"
+                if iszero(_10) { revert_forward() }
+                let expr := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _2
+                /// @src 0:6204:6224  "wormhole().chainId()"
+                if _10
+                {
+                    finalize_allocation(_8, returndatasize())
+                    expr := abi_decode_tuple_uint16_fromMemory(_8, add(_8, returndatasize()))
+                }
+                /// @src 0:6182:6232  "pendingResolved[node][wormhole().chainId()] = true"
+                update_storage_value_offsett_bool_to_bool(/** @src 0:6182:6225  "pendingResolved[node][wormhole().chainId()]" */ mapping_index_access_mapping_uint16_bool_of_uint16(_6, expr))
+                /// @src 0:6601:6621  "wormhole().chainId()"
+                if iszero(extcodesize(_7))
+                {
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    revert(_2, _2)
+                }
+                /// @src 0:6601:6621  "wormhole().chainId()"
+                let _11 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(_5)
+                /// @src 0:6601:6621  "wormhole().chainId()"
+                mstore(_11, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _9)
+                /// @src 0:6601:6621  "wormhole().chainId()"
+                let _12 := staticcall(gas(), _7, _11, /** @src 0:6204:6224  "wormhole().chainId()" */ 4, /** @src 0:6601:6621  "wormhole().chainId()" */ _11, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _3)
+                /// @src 0:6601:6621  "wormhole().chainId()"
+                if iszero(_12) { revert_forward() }
+                let expr_1 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _2
+                /// @src 0:6601:6621  "wormhole().chainId()"
+                if _12
+                {
+                    finalize_allocation(_11, returndatasize())
+                    expr_1 := abi_decode_tuple_uint16_fromMemory(_11, add(_11, returndatasize()))
+                }
+                /// @src 0:6294:6681  "RegistryStructs.Registration({..."
+                let expr_mpos := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ allocate_memory()
+                /// @src 0:6294:6681  "RegistryStructs.Registration({..."
+                write_to_memory_uint8_7086(expr_mpos)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src 0:6294:6681  "RegistryStructs.Registration({..." */ add(expr_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _3), var_node)
+                mstore(/** @src 0:6294:6681  "RegistryStructs.Registration({..." */ add(expr_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _5), and(shl(/** @src 0:11420:11422  "96" */ 0x60, /** @src 0:6394:6417  "addressToBytes32(owner)" */ var_owner), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(0xffffffffffffffffffffffff)))
+                mstore(/** @src 0:6294:6681  "RegistryStructs.Registration({..." */ add(expr_mpos, /** @src 0:11420:11422  "96" */ 0x60), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _2)
+                mstore(/** @src 0:6294:6681  "RegistryStructs.Registration({..." */ add(expr_mpos, 128), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _2)
+                /// @src 0:6294:6681  "RegistryStructs.Registration({..."
+                write_to_memory_uint16(add(expr_mpos, 160), expr_1)
+                write_to_memory_uint8_7088(add(expr_mpos, 192))
+                /// @src 0:6729:6734  "nonce"
+                let _13 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ extract_from_storage_value_offsett_uint32(sload(/** @src 0:6729:6734  "nonce" */ 0x06))
+                /// @src 0:6736:6768  "encodeRegistration(registration)"
+                let expr_mpos_1 := fun_encodeRegistration(expr_mpos)
+                /// @src 0:6703:6772  "wormhole().publishMessage(nonce, encodeRegistration(registration), 1)"
+                if iszero(extcodesize(_7))
+                {
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    revert(_2, _2)
+                }
+                /// @src 0:6703:6772  "wormhole().publishMessage(nonce, encodeRegistration(registration), 1)"
+                let _14 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(_5)
+                /// @src 0:6703:6772  "wormhole().publishMessage(nonce, encodeRegistration(registration), 1)"
+                mstore(_14, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ shl(225, 0x58cd21bf))
+                /// @src 0:6703:6772  "wormhole().publishMessage(nonce, encodeRegistration(registration), 1)"
+                let _15 := call(gas(), _7, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _2, /** @src 0:6703:6772  "wormhole().publishMessage(nonce, encodeRegistration(registration), 1)" */ _14, sub(abi_encode_uint32_bytes_rational_by(add(_14, /** @src 0:6204:6224  "wormhole().chainId()" */ 4), /** @src 0:6703:6772  "wormhole().publishMessage(nonce, encodeRegistration(registration), 1)" */ _13, expr_mpos_1), _14), _14, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _3)
+                /// @src 0:6703:6772  "wormhole().publishMessage(nonce, encodeRegistration(registration), 1)"
+                if iszero(_15) { revert_forward() }
+                let expr_2 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _2
+                /// @src 0:6703:6772  "wormhole().publishMessage(nonce, encodeRegistration(registration), 1)"
+                if _15
+                {
+                    finalize_allocation(_14, returndatasize())
+                    expr_2 := abi_decode_tuple_uint64_fromMemory(_14, add(_14, returndatasize()))
+                }
+                /// @src 0:3149:3170  "Transfer(node, owner)"
+                let _16 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(_5)
+                /// @src 0:3149:3170  "Transfer(node, owner)"
+                log2(_16, sub(abi_encode_address(_16, var_owner), _16), 0xd4735d920b0f87494915f556dd9b54c8f309026070caea5c737245152564d266, var_node)
+                /// @src 0:1733:1734  "_"
+                _1 := expr_2
+            }
+            /// @ast-id 229 @src 0:4130:4358  "function owner(bytes32 node) public view virtual override returns (address) {..."
+            function fun_owner(var_node) -> var
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ var_node)
+                mstore(0x20, /** @src 0:4231:4238  "records" */ 0x01)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let cleaned := and(sload(keccak256(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40)), sub(shl(160, 1), 1))
+                /// @src 0:4260:4331  "if (addr == address(this)) {..."
+                if /** @src 0:4264:4285  "addr == address(this)" */ eq(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ cleaned, /** @src 0:4280:4284  "this" */ address())
+                /// @src 0:4260:4331  "if (addr == address(this)) {..."
+                {
+                    /// @src 0:4301:4320  "return address(0x0)"
+                    var := /** @src -1:-1:-1 */ 0
+                    /// @src 0:4301:4320  "return address(0x0)"
+                    leave
+                }
+                /// @src 0:4340:4351  "return addr"
+                var := cleaned
+            }
+            /// @ast-id 259 @src 0:4364:4593  "function pendingOwner(bytes32 node) public view virtual override returns (address) {..."
+            function fun_pendingOwner(var_node) -> var
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ var_node)
+                mstore(0x20, /** @src 0:4472:4479  "pending" */ 0x02)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let cleaned := and(sload(keccak256(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40)), sub(shl(160, 1), 1))
+                /// @src 0:4495:4566  "if (addr == address(this)) {..."
+                if /** @src 0:4499:4520  "addr == address(this)" */ eq(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ cleaned, /** @src 0:4515:4519  "this" */ address())
+                /// @src 0:4495:4566  "if (addr == address(this)) {..."
+                {
+                    /// @src 0:4536:4555  "return address(0x0)"
+                    var := /** @src -1:-1:-1 */ 0
+                    /// @src 0:4536:4555  "return address(0x0)"
+                    leave
+                }
+                /// @src 0:4575:4586  "return addr"
+                var := cleaned
+            }
+            /// @ast-id 273 @src 0:4600:4725  "function resolver(bytes32 node) public view virtual override returns (address) {..."
+            function fun_resolver(var_node) -> var
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ var_node)
+                mstore(0x20, /** @src 0:4696:4703  "records" */ 0x01)
+                /// @src 0:4689:4718  "return records[node].resolver"
+                var := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(sload(/** @src 0:4696:4718  "records[node].resolver" */ add(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ keccak256(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40), /** @src 0:4696:4703  "records" */ 0x01)), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1))
+            }
+            /// @ast-id 287 @src 0:4732:4846  "function ttl(bytes32 node) public view virtual override returns (uint64) {..."
+            function fun_ttl(var_node) -> var
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ var_node)
+                mstore(0x20, /** @src 0:4822:4829  "records" */ 0x01)
+                /// @src 0:4815:4839  "return records[node].ttl"
+                var := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(shr(160, sload(/** @src 0:4822:4839  "records[node].ttl" */ add(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ keccak256(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40), /** @src 0:4822:4829  "records" */ 0x01))), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0xffffffffffffffff)
+            }
+            /// @ast-id 306 @src 0:4852:4991  "function recordExists(bytes32 node) public view virtual override returns (bool) {..."
+            function fun_recordExists(var_node) -> var
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ var_node)
+                mstore(0x20, /** @src 0:4949:4956  "records" */ 0x01)
+                /// @src 0:4942:4984  "return records[node].owner != address(0x0)"
+                var := /** @src 0:4949:4984  "records[node].owner != address(0x0)" */ iszero(iszero(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(sload(keccak256(/** @src -1:-1:-1 */ 0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40)), sub(shl(160, 1), 1))))
+            }
+            function update_storage_value_offsett_address_to_address(slot, value)
+            {
+                sstore(slot, or(and(sload(slot), shl(160, 0xffffffffffffffffffffffff)), and(value, sub(shl(160, 1), 1))))
+            }
+            function abi_decode_uint16_fromMemory(offset) -> value
+            {
+                value := mload(offset)
+                validator_revert_uint16(value)
+            }
+            function abi_decode_tuple_uint16_fromMemory(headStart, dataEnd) -> value0
+            {
+                if slt(sub(dataEnd, headStart), 32) { revert(0, 0) }
+                let value := mload(headStart)
+                validator_revert_uint16(value)
+                value0 := value
+            }
+            function revert_forward()
+            {
+                let pos := mload(64)
+                returndatacopy(pos, 0, returndatasize())
+                revert(pos, returndatasize())
+            }
+            function write_to_memory_uint8_7086(memPtr)
+            { mstore(memPtr, 9) }
+            function write_to_memory_uint8_7088(memPtr)
+            { mstore(memPtr, 1) }
+            function write_to_memory_uint8_7125(memPtr)
+            { mstore(memPtr, 4) }
+            function write_to_memory_uint8_7126(memPtr)
+            { mstore(memPtr, 5) }
+            function write_to_memory_uint8_7127(memPtr)
+            { mstore(memPtr, 2) }
+            function write_to_memory_uint8_7128(memPtr)
+            { mstore(memPtr, 3) }
+            function write_to_memory_uint8(memPtr, value)
+            {
+                mstore(memPtr, and(value, 0xff))
+            }
+            function write_to_memory_uint64(memPtr, value)
+            {
+                mstore(memPtr, and(value, 0xffffffffffffffff))
+            }
+            function write_to_memory_uint16(memPtr, value)
+            {
+                mstore(memPtr, and(value, 0xffff))
+            }
+            function extract_from_storage_value_offsett_uint32(slot_value) -> value
+            {
+                value := and(slot_value, 0xffffffff)
+            }
+            function abi_decode_uint64_fromMemory(offset) -> value
+            {
+                value := mload(offset)
+                validator_revert_uint64(value)
+            }
+            function abi_decode_tuple_uint64_fromMemory(headStart, dataEnd) -> value0
+            {
+                if slt(sub(dataEnd, headStart), 32) { revert(0, 0) }
+                let value := mload(headStart)
+                validator_revert_uint64(value)
+                value0 := value
+            }
+            function abi_encode_uint32_bytes_rational_by(headStart, value0, value1) -> tail
+            {
+                mstore(headStart, and(value0, 0xffffffff))
+                mstore(add(headStart, 32), 96)
+                tail := abi_encode_bytes_memory_ptr(value1, add(headStart, 96))
+                mstore(add(headStart, 64), /** @src 0:6228:6232  "true" */ 0x01)
+            }
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            function abi_decode_uint8_fromMemory(offset) -> value
+            {
+                value := mload(offset)
+                validator_revert_uint8(value)
+            }
+            function abi_decode_uint32_fromMemory(offset) -> value
+            {
+                value := mload(offset)
+                if iszero(eq(value, and(value, 0xffffffff))) { revert(0, 0) }
+            }
+            function abi_decode_bytes_fromMemory(offset, end) -> array
+            {
+                if iszero(slt(add(offset, 0x1f), end)) { revert(0, 0) }
+                let _1 := mload(offset)
+                if gt(_1, 0xffffffffffffffff) { panic_error_0x41() }
+                let memPtr := mload(64)
+                finalize_allocation(memPtr, add(and(add(_1, 0x1f), not(31)), 0x20))
+                mstore(memPtr, _1)
+                if gt(add(add(offset, _1), 0x20), end)
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                copy_memory_to_memory(add(offset, 0x20), add(memPtr, 0x20), _1)
+                array := memPtr
+            }
+            function abi_decode_array_struct_Signature_dyn_fromMemory(offset, end) -> array
+            {
+                if iszero(slt(add(offset, 0x1f), end)) { revert(0, 0) }
+                let _1 := mload(offset)
+                let _2 := 0x20
+                if gt(_1, 0xffffffffffffffff) { panic_error_0x41() }
+                let _3 := 64
+                let memPtr := mload(_3)
+                finalize_allocation(memPtr, add(shl(5, _1), _2))
+                let dst := memPtr
+                mstore(memPtr, _1)
+                dst := add(memPtr, _2)
+                let srcEnd := add(add(offset, shl(7, _1)), _2)
+                if gt(srcEnd, end)
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let src := add(offset, _2)
+                for { } lt(src, srcEnd) { src := add(src, 0x80) }
+                {
+                    if slt(sub(end, src), 0x80)
+                    {
+                        /// @src -1:-1:-1
+                        let _4 := 0
+                        /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                        revert(/** @src -1:-1:-1 */ _4, _4)
+                    }
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    let memPtr_1 := mload(_3)
+                    finalize_allocation_7110(memPtr_1)
+                    mstore(memPtr_1, mload(src))
+                    mstore(add(memPtr_1, _2), mload(add(src, _2)))
+                    let value := mload(add(src, _3))
+                    validator_revert_uint8(value)
+                    mstore(add(memPtr_1, _3), value)
+                    let _5 := 96
+                    let value_1 := mload(add(src, _5))
+                    validator_revert_uint8(value_1)
+                    mstore(add(memPtr_1, _5), value_1)
+                    mstore(dst, memPtr_1)
+                    dst := add(dst, _2)
+                }
+                array := memPtr
+            }
+            function abi_decode_bool_fromMemory(offset) -> value
+            {
+                value := mload(offset)
+                validator_revert_bool(value)
+            }
+            function abi_decode_struct_VMt_boolt_string_fromMemory(headStart, dataEnd) -> value0, value1, value2
+            {
+                if slt(sub(dataEnd, headStart), 96) { revert(0, 0) }
+                let offset := mload(headStart)
+                let _1 := 0xffffffffffffffff
+                if gt(offset, _1) { revert(0, 0) }
+                let _2 := add(headStart, offset)
+                if slt(sub(dataEnd, _2), 0x0160)
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let value := allocate_memory_7112()
+                mstore(value, abi_decode_uint8_fromMemory(_2))
+                mstore(add(value, 32), abi_decode_uint32_fromMemory(add(_2, 32)))
+                mstore(add(value, 64), abi_decode_uint32_fromMemory(add(_2, 64)))
+                mstore(add(value, 96), abi_decode_uint16_fromMemory(add(_2, 96)))
+                mstore(add(value, 128), mload(add(_2, 128)))
+                mstore(add(value, 160), abi_decode_uint64_fromMemory(add(_2, 160)))
+                mstore(add(value, 192), abi_decode_uint8_fromMemory(add(_2, 192)))
+                let offset_1 := mload(add(_2, 224))
+                if gt(offset_1, _1)
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(add(value, 224), abi_decode_bytes_fromMemory(add(_2, offset_1), dataEnd))
+                let _3 := 256
+                mstore(add(value, _3), abi_decode_uint32_fromMemory(add(_2, _3)))
+                let _4 := 288
+                let offset_2 := mload(add(_2, _4))
+                if gt(offset_2, _1)
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(add(value, _4), abi_decode_array_struct_Signature_dyn_fromMemory(add(_2, offset_2), dataEnd))
+                let _5 := 320
+                mstore(add(value, _5), mload(add(_2, _5)))
+                value0 := value
+                value1 := abi_decode_bool_fromMemory(add(headStart, 32))
+                let offset_3 := mload(add(headStart, 64))
+                if gt(offset_3, _1)
+                {
+                    revert(/** @src -1:-1:-1 */ 0, 0)
+                }
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                value2 := abi_decode_bytes_fromMemory(add(headStart, offset_3), dataEnd)
+            }
+            function abi_encode_bytes_calldata(headStart, value0, value1) -> tail
+            {
+                mstore(headStart, 32)
+                mstore(add(headStart, 32), value1)
+                calldatacopy(add(headStart, 64), value0, value1)
+                mstore(add(add(headStart, value1), 64), 0)
+                tail := add(add(headStart, and(add(value1, 31), not(31))), 64)
+            }
+            function require_helper_string(condition, message)
+            {
+                if iszero(condition)
+                {
+                    let memPtr := mload(64)
+                    mstore(memPtr, shl(229, 4594637))
+                    mstore(add(memPtr, 4), 32)
+                    revert(memPtr, sub(abi_encode_bytes_memory_ptr(message, add(memPtr, 36)), memPtr))
+                }
+            }
+            function require_helper_stringliteral(condition)
+            {
+                if iszero(condition)
+                {
+                    let memPtr := mload(64)
+                    mstore(memPtr, shl(229, 4594637))
+                    mstore(add(memPtr, 4), 32)
+                    mstore(add(memPtr, 36), 46)
+                    mstore(add(memPtr, 68), "Unregistered delegate registry e")
+                    mstore(add(memPtr, 100), "mitter address")
+                    revert(memPtr, 132)
+                }
+            }
+            function update_storage_value_offsett_uint64_to_uint64(slot, value)
+            {
+                let _1 := sload(slot)
+                sstore(slot, or(and(_1, not(shl(160, 0xffffffffffffffff))), and(shl(160, value), shl(160, 0xffffffffffffffff))))
+            }
+            /// @ast-id 687 @src 0:6785:9642  "function receiveSetOwner(bytes calldata encodedVM) external returns (uint64 sequence) {..."
+            function fun_receiveSetOwner(var_encodedVM_offset, var_encodedVM_length) -> var_sequence
+            {
+                /// @src 0:6854:6869  "uint64 sequence"
+                var_sequence := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0
+                /// @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)"
+                if iszero(extcodesize(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(/** @src 0:10178:10197  "CORE_BRIDGE_ADDRESS" */ loadimmutable("28"), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1))))
+                /// @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)"
+                {
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    revert(0, 0)
+                }
+                /// @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)"
+                let _1 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(64)
+                /// @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)"
+                mstore(_1, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ shl(225, 0x607ec5ef))
+                /// @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)"
+                let _2 := staticcall(gas(), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(/** @src 0:10178:10197  "CORE_BRIDGE_ADDRESS" */ loadimmutable("28"), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1)), /** @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)" */ _1, sub(abi_encode_bytes_calldata(add(_1, 4), var_encodedVM_offset, var_encodedVM_length), _1), _1, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0)
+                /// @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)"
+                if iszero(_2) { revert_forward() }
+                let expr_component_mpos := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0
+                let expr_component := expr_component_mpos
+                let expr_465_component_3_mpos := expr_component_mpos
+                /// @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)"
+                if _2
+                {
+                    returndatacopy(_1, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ expr_component_mpos, /** @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)" */ returndatasize())
+                    finalize_allocation(_1, returndatasize())
+                    let expr_component_mpos_1, expr_component_1, expr_component_mpos_2 := abi_decode_struct_VMt_boolt_string_fromMemory(_1, add(_1, returndatasize()))
+                    expr_component_mpos := expr_component_mpos_1
+                    expr_component := expr_component_1
+                    expr_465_component_3_mpos := expr_component_mpos_2
+                }
+                /// @src 0:7139:7161  "require(valid, reason)"
+                require_helper_string(expr_component, expr_465_component_3_mpos)
+                /// @src 0:7231:7326  "require(registryDelegates[vm.emitterAddress], 'Unregistered delegate registry emitter address')"
+                require_helper_stringliteral(/** @src 0:7239:7275  "registryDelegates[vm.emitterAddress]" */ read_from_storage_split_dynamic_bool(mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7113(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7257:7274  "vm.emitterAddress" */ add(expr_component_mpos, 128)))))
+                /// @src 0:7379:7408  "_decodeVaaPayload(vm.payload)"
+                let expr_mpos := fun_decodeVaaPayload(/** @src 0:7397:7407  "vm.payload" */ mload(add(expr_component_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 224)))
+                /// @src 0:7419:7618  "if (reg.status == 1) {..."
+                if /** @src 0:7423:7438  "reg.status == 1" */ eq(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(cleanup_from_storage_bool(mload(/** @src 0:7423:7433  "reg.status" */ add(expr_mpos, 192))), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0xff), /** @src 0:7437:7438  "1" */ 0x01)
+                /// @src 0:7419:7618  "if (reg.status == 1) {..."
+                {
+                    /// @src 0:7556:7581  "pendingResolved[reg.node]"
+                    let _3 := mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7082(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7572:7580  "reg.node" */ add(expr_mpos, 32)))
+                    /// @src 0:7556:7607  "pendingResolved[reg.node][vm.emitterChainId] = true"
+                    update_storage_value_offsett_bool_to_bool(/** @src 0:7556:7600  "pendingResolved[reg.node][vm.emitterChainId]" */ mapping_index_access_mapping_uint16_bool_of_uint16(_3, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ cleanup_uint16(mload(/** @src 0:7582:7599  "vm.emitterChainId" */ add(expr_component_mpos, 96)))))
+                }
+                /// @src 0:7628:9636  "if (isPendingResolvedForAll(reg.node)) {..."
+                switch /** @src 0:7632:7665  "isPendingResolvedForAll(reg.node)" */ fun_isPendingResolvedForAll(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32)))
+                case /** @src 0:7628:9636  "if (isPendingResolvedForAll(reg.node)) {..." */ 0 {
+                    /// @src 0:7998:8023  "pendingResolved[reg.node]"
+                    let _4 := mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7082(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32)))
+                    /// @src 0:8024:8044  "wormhole().chainId()"
+                    if iszero(extcodesize(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(/** @src 0:10178:10197  "CORE_BRIDGE_ADDRESS" */ loadimmutable("28"), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1))))
+                    /// @src 0:8024:8044  "wormhole().chainId()"
+                    {
+                        /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                        revert(0, 0)
+                    }
+                    /// @src 0:8024:8044  "wormhole().chainId()"
+                    let _5 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(64)
+                    /// @src 0:8024:8044  "wormhole().chainId()"
+                    mstore(_5, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ shl(225, 0x4d4502c9))
+                    /// @src 0:8024:8044  "wormhole().chainId()"
+                    let _6 := staticcall(gas(), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(/** @src 0:10178:10197  "CORE_BRIDGE_ADDRESS" */ loadimmutable("28"), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1)), /** @src 0:8024:8044  "wormhole().chainId()" */ _5, /** @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)" */ 4, /** @src 0:8024:8044  "wormhole().chainId()" */ _5, /** @src 0:7656:7664  "reg.node" */ 32)
+                    /// @src 0:8024:8044  "wormhole().chainId()"
+                    if iszero(_6) { revert_forward() }
+                    let expr := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0
+                    /// @src 0:8024:8044  "wormhole().chainId()"
+                    if _6
+                    {
+                        finalize_allocation(_5, returndatasize())
+                        expr := abi_decode_tuple_uint16_fromMemory(_5, add(_5, returndatasize()))
+                    }
+                    /// @src 0:7993:9636  "if (!pendingResolved[reg.node][wormhole().chainId()]) {..."
+                    if /** @src 0:7997:8045  "!pendingResolved[reg.node][wormhole().chainId()]" */ cleanup_bool(iszero(/** @src 0:7998:8045  "pendingResolved[reg.node][wormhole().chainId()]" */ read_from_storage_split_dynamic_bool(mapping_index_access_mapping_uint16_bool_of_uint16(_4, expr))))
+                    /// @src 0:7993:9636  "if (!pendingResolved[reg.node][wormhole().chainId()]) {..."
+                    {
+                        /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                        let _7 := mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32))
+                        /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                        let _8 := mload(/** @src 0:8235:8244  "reg.owner" */ add(expr_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 64))
+                        let _9 := mload(/** @src 0:8272:8284  "reg.resolver" */ add(expr_mpos, 96))
+                        /// @src 0:8307:8314  "reg.ttl"
+                        let _10 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ cleanup_from_storage_uint64(mload(/** @src 0:8307:8314  "reg.ttl" */ add(expr_mpos, /** @src 0:7257:7274  "vm.emitterAddress" */ 128)))
+                        /// @src 0:8342:8354  "reg.srcChain"
+                        let _11 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ cleanup_uint16(mload(/** @src 0:8342:8354  "reg.srcChain" */ add(expr_mpos, 160)))
+                        /// @src 0:8119:8396  "RegistryStructs.Registration({..."
+                        let expr_579_mpos := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ allocate_memory()
+                        /// @src 0:8119:8396  "RegistryStructs.Registration({..."
+                        write_to_memory_uint8_7086(expr_579_mpos)
+                        /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                        mstore(/** @src 0:8119:8396  "RegistryStructs.Registration({..." */ add(expr_579_mpos, /** @src 0:7656:7664  "reg.node" */ 32), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _7)
+                        mstore(/** @src 0:8119:8396  "RegistryStructs.Registration({..." */ add(expr_579_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 64), _8)
+                        mstore(/** @src 0:8119:8396  "RegistryStructs.Registration({..." */ add(expr_579_mpos, /** @src 0:8272:8284  "reg.resolver" */ 96), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _9)
+                        /// @src 0:8119:8396  "RegistryStructs.Registration({..."
+                        write_to_memory_uint64(add(expr_579_mpos, /** @src 0:7257:7274  "vm.emitterAddress" */ 128), /** @src 0:8119:8396  "RegistryStructs.Registration({..." */ _10)
+                        write_to_memory_uint16(add(expr_579_mpos, /** @src 0:8342:8354  "reg.srcChain" */ 160), /** @src 0:8119:8396  "RegistryStructs.Registration({..." */ _11)
+                        write_to_memory_uint8_7088(add(expr_579_mpos, /** @src 0:7423:7433  "reg.status" */ 192))
+                        /// @src 0:8431:8446  "owner(reg.node)"
+                        let expr_1 := fun_owner(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32)))
+                        /// @src 0:8460:9540  "if (prevOwner != address(0)) {..."
+                        switch /** @src 0:8464:8487  "prevOwner != address(0)" */ iszero(iszero(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(/** @src 0:8464:8487  "prevOwner != address(0)" */ expr_1, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1))))
+                        case /** @src 0:8460:9540  "if (prevOwner != address(0)) {..." */ 0 {
+                            /// @src 0:8822:9540  "if (pending[reg.node] != address(0)) {..."
+                            switch /** @src 0:8826:8857  "pending[reg.node] != address(0)" */ iszero(iszero(cleanup_address(/** @src 0:8826:8843  "pending[reg.node]" */ read_from_storage_split_offset_address(mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7081(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32)))))))
+                            case /** @src 0:8822:9540  "if (pending[reg.node] != address(0)) {..." */ 0 {
+                                /// @src 0:9406:9453  "pending[reg.node] = bytes32ToAddress(reg.owner)"
+                                update_storage_value_offsett_address_to_address(/** @src 0:9406:9423  "pending[reg.node]" */ mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7081(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32))), /** @src 0:9426:9453  "bytes32ToAddress(reg.owner)" */ cleanup_address(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:8235:8244  "reg.owner" */ add(expr_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 64))))
+                                /// @src 0:9471:9496  "pendingResolved[reg.node]"
+                                let _12 := mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7082(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32)))
+                                /// @src 0:9497:9517  "wormhole().chainId()"
+                                if iszero(extcodesize(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(/** @src 0:10178:10197  "CORE_BRIDGE_ADDRESS" */ loadimmutable("28"), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1))))
+                                /// @src 0:9497:9517  "wormhole().chainId()"
+                                {
+                                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                                    revert(0, 0)
+                                }
+                                /// @src 0:9497:9517  "wormhole().chainId()"
+                                let _13 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(64)
+                                /// @src 0:9497:9517  "wormhole().chainId()"
+                                mstore(_13, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ shl(225, 0x4d4502c9))
+                                /// @src 0:9497:9517  "wormhole().chainId()"
+                                let _14 := staticcall(gas(), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(/** @src 0:10178:10197  "CORE_BRIDGE_ADDRESS" */ loadimmutable("28"), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1)), /** @src 0:9497:9517  "wormhole().chainId()" */ _13, /** @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)" */ 4, /** @src 0:9497:9517  "wormhole().chainId()" */ _13, /** @src 0:7656:7664  "reg.node" */ 32)
+                                /// @src 0:9497:9517  "wormhole().chainId()"
+                                if iszero(_14) { revert_forward() }
+                                let expr_2 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0
+                                /// @src 0:9497:9517  "wormhole().chainId()"
+                                if _14
+                                {
+                                    finalize_allocation(_13, returndatasize())
+                                    expr_2 := abi_decode_tuple_uint16_fromMemory(_13, add(_13, returndatasize()))
+                                }
+                                /// @src 0:9471:9525  "pendingResolved[reg.node][wormhole().chainId()] = true"
+                                update_storage_value_offsett_bool_to_bool(/** @src 0:9471:9518  "pendingResolved[reg.node][wormhole().chainId()]" */ mapping_index_access_mapping_uint16_bool_of_uint16(_12, expr_2))
+                            }
+                            default /// @src 0:8822:9540  "if (pending[reg.node] != address(0)) {..."
+                            {
+                                /// @src 0:9174:9209  "addressToBytes32(pending[reg.node])"
+                                let expr_3 := fun_addressToBytes32(/** @src 0:9191:9208  "pending[reg.node]" */ read_from_storage_split_offset_address(mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7081(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32)))))
+                                /// @src 0:9170:9275  "if (addressToBytes32(pending[reg.node]) == reg.owner) res.status = 5;..."
+                                switch /** @src 0:9174:9222  "addressToBytes32(pending[reg.node]) == reg.owner" */ eq(expr_3, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:8235:8244  "reg.owner" */ add(expr_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 64)))
+                                case /** @src 0:9170:9275  "if (addressToBytes32(pending[reg.node]) == reg.owner) res.status = 5;..." */ 0 {
+                                    /// @src 0:9261:9275  "res.status = 4"
+                                    write_to_memory_uint8_7125(/** @src 0:8119:8396  "RegistryStructs.Registration({..." */ add(expr_579_mpos, /** @src 0:7423:7433  "reg.status" */ 192))
+                                }
+                                default /// @src 0:9170:9275  "if (addressToBytes32(pending[reg.node]) == reg.owner) res.status = 5;..."
+                                {
+                                    /// @src 0:9224:9238  "res.status = 5"
+                                    write_to_memory_uint8_7126(/** @src 0:8119:8396  "RegistryStructs.Registration({..." */ add(expr_579_mpos, /** @src 0:7423:7433  "reg.status" */ 192))
+                                }
+                            }
+                        }
+                        default /// @src 0:8460:9540  "if (prevOwner != address(0)) {..."
+                        {
+                            /// @src 0:8704:8801  "if (addressToBytes32(prevOwner) == reg.owner) res.status = 3;..."
+                            switch /** @src 0:8708:8748  "addressToBytes32(prevOwner) == reg.owner" */ eq(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(shl(/** @src 0:8272:8284  "reg.resolver" */ 96, /** @src 0:8708:8735  "addressToBytes32(prevOwner)" */ expr_1), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(0xffffffffffffffffffffffff)), mload(/** @src 0:8235:8244  "reg.owner" */ add(expr_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 64)))
+                            case /** @src 0:8704:8801  "if (addressToBytes32(prevOwner) == reg.owner) res.status = 3;..." */ 0 {
+                                /// @src 0:8787:8801  "res.status = 2"
+                                write_to_memory_uint8_7127(/** @src 0:8119:8396  "RegistryStructs.Registration({..." */ add(expr_579_mpos, /** @src 0:7423:7433  "reg.status" */ 192))
+                            }
+                            default /// @src 0:8704:8801  "if (addressToBytes32(prevOwner) == reg.owner) res.status = 3;..."
+                            {
+                                /// @src 0:8750:8764  "res.status = 3"
+                                write_to_memory_uint8_7128(/** @src 0:8119:8396  "RegistryStructs.Registration({..." */ add(expr_579_mpos, /** @src 0:7423:7433  "reg.status" */ 192))
+                            }
+                        }
+                        /// @src 0:9591:9596  "nonce"
+                        let _15 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ extract_from_storage_value_offsett_uint32(sload(/** @src 0:9591:9596  "nonce" */ 0x06))
+                        /// @src 0:9598:9621  "encodeRegistration(reg)"
+                        let expr_678_mpos := fun_encodeRegistration(expr_mpos)
+                        /// @src 0:9565:9625  "wormhole().publishMessage(nonce, encodeRegistration(reg), 1)"
+                        if iszero(extcodesize(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(/** @src 0:10178:10197  "CORE_BRIDGE_ADDRESS" */ loadimmutable("28"), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1))))
+                        /// @src 0:9565:9625  "wormhole().publishMessage(nonce, encodeRegistration(reg), 1)"
+                        {
+                            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                            revert(0, 0)
+                        }
+                        /// @src 0:9565:9625  "wormhole().publishMessage(nonce, encodeRegistration(reg), 1)"
+                        let _16 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(64)
+                        /// @src 0:9565:9625  "wormhole().publishMessage(nonce, encodeRegistration(reg), 1)"
+                        mstore(_16, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ shl(225, 0x58cd21bf))
+                        /// @src 0:9565:9625  "wormhole().publishMessage(nonce, encodeRegistration(reg), 1)"
+                        let _17 := call(gas(), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(/** @src 0:10178:10197  "CORE_BRIDGE_ADDRESS" */ loadimmutable("28"), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1)), 0, /** @src 0:9565:9625  "wormhole().publishMessage(nonce, encodeRegistration(reg), 1)" */ _16, sub(abi_encode_uint32_bytes_rational_by(add(_16, /** @src 0:7082:7120  "wormhole().parseAndVerifyVM(encodedVM)" */ 4), /** @src 0:9565:9625  "wormhole().publishMessage(nonce, encodeRegistration(reg), 1)" */ _15, expr_678_mpos), _16), _16, /** @src 0:7656:7664  "reg.node" */ 32)
+                        /// @src 0:9565:9625  "wormhole().publishMessage(nonce, encodeRegistration(reg), 1)"
+                        if iszero(_17) { revert_forward() }
+                        let expr_4 := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0
+                        /// @src 0:9565:9625  "wormhole().publishMessage(nonce, encodeRegistration(reg), 1)"
+                        if _17
+                        {
+                            finalize_allocation(_16, returndatasize())
+                            expr_4 := abi_decode_tuple_uint64_fromMemory(_16, add(_16, returndatasize()))
+                        }
+                        /// @src 0:9554:9625  "sequence = wormhole().publishMessage(nonce, encodeRegistration(reg), 1)"
+                        var_sequence := expr_4
+                    }
+                }
+                default /// @src 0:7628:9636  "if (isPendingResolvedForAll(reg.node)) {..."
+                {
+                    /// @src 0:7774:7782  "reg.node"
+                    fun_resetPending(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32)))
+                    /// @src 0:7797:7850  "records[reg.node].owner = bytes32ToAddress(reg.owner)"
+                    update_storage_value_offsett_address_to_address(/** @src 0:7797:7814  "records[reg.node]" */ mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7130(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32))), /** @src 0:7823:7850  "bytes32ToAddress(reg.owner)" */ cleanup_address(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7840:7849  "reg.owner" */ add(expr_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 64))))
+                    /// @src 0:7864:7923  "records[reg.node].resolver = bytes32ToAddress(reg.resolver)"
+                    update_storage_value_offsett_address_to_address(/** @src 0:7864:7890  "records[reg.node].resolver" */ add(/** @src 0:7864:7881  "records[reg.node]" */ mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7130(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32))), /** @src 0:7437:7438  "1" */ 0x01), /** @src 0:7893:7923  "bytes32ToAddress(reg.resolver)" */ cleanup_address(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7910:7922  "reg.resolver" */ add(expr_mpos, 96))))
+                    /// @src 0:7937:7976  "records[reg.node].ttl = uint64(reg.ttl)"
+                    update_storage_value_offsett_uint64_to_uint64(/** @src 0:7937:7958  "records[reg.node].ttl" */ add(/** @src 0:7937:7954  "records[reg.node]" */ mapping_index_access_mapping_bytes32_struct_Record_storage_of_bytes32_7130(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:7656:7664  "reg.node" */ add(expr_mpos, 32))), /** @src 0:7437:7438  "1" */ 0x01), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ cleanup_from_storage_uint64(mload(/** @src 0:7968:7975  "reg.ttl" */ add(expr_mpos, /** @src 0:7257:7274  "vm.emitterAddress" */ 128))))
+                }
+            }
+            /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+            function storage_array_index_access_uint16_dyn(index) -> slot, offset
+            {
+                if iszero(lt(index, sload(/** @src 0:5594:5602  "chainIds" */ 0x04)))
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                {
+                    mstore(0, shl(224, 0x4e487b71))
+                    mstore(/** @src 0:5594:5602  "chainIds" */ 0x04, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x32)
+                    revert(0, 0x24)
+                }
+                mstore(/** @src -1:-1:-1 */ 0, /** @src 0:5594:5602  "chainIds" */ 0x04)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                slot := add(62514009886607029107290561805838585334079798074568712924583230797734656856475, shr(/** @src 0:5594:5602  "chainIds" */ 0x04, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ index))
+                offset := and(shl(1, index), 30)
+            }
+            /// @ast-id 341 @src 0:5492:5776  "function isPendingResolvedForAll(bytes32 node) internal returns (bool) {..."
+            function fun_isPendingResolvedForAll(var_node) -> var
+            {
+                /// @src 0:5578:5588  "uint i = 0"
+                let var_i := /** @src 0:5587:5588  "0" */ 0x00
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _1 := sload(/** @src 0:5594:5602  "chainIds" */ 0x04)
+                /// @src 0:5573:5749  "for (uint i = 0; i < chainIds.length;) {..."
+                for { }
+                /** @src 0:5590:5609  "i < chainIds.length" */ lt(var_i, _1)
+                /// @src 0:5578:5588  "uint i = 0"
+                { }
+                {
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    mstore(/** @src 0:5587:5588  "0" */ 0x00, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ var_node)
+                    /// @src 0:5631:5646  "pendingResolved"
+                    let _2 := 0x03
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    mstore(0x20, /** @src 0:5631:5646  "pendingResolved" */ _2)
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    let dataSlot := keccak256(/** @src 0:5587:5588  "0" */ 0x00, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0x40)
+                    /// @src 0:5653:5664  "chainIds[i]"
+                    let _3, _4 := storage_array_index_access_uint16_dyn(var_i)
+                    /// @src 0:5626:5679  "if (!pendingResolved[node][chainIds[i]]) return false"
+                    if /** @src 0:5630:5665  "!pendingResolved[node][chainIds[i]]" */ iszero(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(sload(/** @src 0:5631:5665  "pendingResolved[node][chainIds[i]]" */ mapping_index_access_mapping_uint16_bool_of_uint16(dataSlot, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(shr(shl(/** @src 0:5631:5646  "pendingResolved" */ _2, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _4), sload(/** @src 0:5653:5664  "chainIds[i]" */ _3)), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0xffff))), 0xff))
+                    /// @src 0:5626:5679  "if (!pendingResolved[node][chainIds[i]]) return false"
+                    {
+                        /// @src 0:5667:5679  "return false"
+                        var := /** @src 0:5587:5588  "0" */ 0x00
+                        /// @src 0:5667:5679  "return false"
+                        leave
+                    }
+                    /// @src 0:5721:5724  "i++"
+                    var_i := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ add(/** @src 0:5721:5724  "i++" */ var_i, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 1)
+                }
+                /// @src 0:5758:5769  "return true"
+                var := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 1
+            }
+            /// @ast-id 380 @src 0:5782:6044  "function resetPending(bytes32 node) internal {..."
+            function fun_resetPending(var_node)
+            {
+                /// @src 0:5861:5862  "0"
+                let _1 := 0x00
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src 0:5861:5862  "0" */ _1, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ var_node)
+                let _2 := 0x20
+                mstore(_2, /** @src 0:5837:5844  "pending" */ 0x02)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _3 := 0x40
+                let _4 := keccak256(/** @src 0:5861:5862  "0" */ _1, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _3)
+                sstore(_4, and(sload(_4), shl(160, 0xffffffffffffffffffffffff)))
+                /// @src 0:5878:5888  "uint i = 0"
+                let var_i := /** @src 0:5861:5862  "0" */ _1
+                /// @src 0:5873:6038  "for (uint i = 0; i < chainIds.length;) {..."
+                for { }
+                /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 1
+                /// @src 0:5878:5888  "uint i = 0"
+                { }
+                {
+                    /// @src 0:5890:5909  "i < chainIds.length"
+                    if iszero(lt(var_i, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sload(/** @src 0:5894:5902  "chainIds" */ 0x04)))
+                    /// @src 0:5890:5909  "i < chainIds.length"
+                    { break }
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    mstore(/** @src 0:5861:5862  "0" */ _1, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ var_node)
+                    /// @src 0:5926:5941  "pendingResolved"
+                    let _5 := 0x03
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    mstore(_2, /** @src 0:5926:5941  "pendingResolved" */ _5)
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    let dataSlot := keccak256(/** @src 0:5861:5862  "0" */ _1, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _3)
+                    /// @src 0:5948:5959  "chainIds[i]"
+                    let _6, _7 := storage_array_index_access_uint16_dyn(var_i)
+                    /// @src 0:5926:5960  "pendingResolved[node][chainIds[i]]"
+                    let _8 := mapping_index_access_mapping_uint16_bool_of_uint16(dataSlot, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(shr(shl(/** @src 0:5926:5941  "pendingResolved" */ _5, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _7), sload(/** @src 0:5948:5959  "chainIds[i]" */ _6)), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 0xffff))
+                    sstore(_8, and(sload(_8), not(255)))
+                    /// @src 0:6010:6013  "i++"
+                    var_i := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ add(/** @src 0:6010:6013  "i++" */ var_i, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 1)
+                }
+            }
+            /// @ast-id 774 @src 0:10211:10822  "function _decodeVaaPayload(bytes memory payload) private pure returns (RegistryStructs.Registration memory) {..."
+            function fun_decodeVaaPayload(var_payload_mpos) -> var_mpos
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let memPtr := mload(64)
+                finalize_allocation_7078(memPtr)
+                /// @src -1:-1:-1
+                let _1 := 0
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(memPtr, /** @src -1:-1:-1 */ _1)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(add(memPtr, 32), /** @src -1:-1:-1 */ _1)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(add(memPtr, 64), /** @src -1:-1:-1 */ _1)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(add(memPtr, 96), /** @src -1:-1:-1 */ _1)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(add(memPtr, 128), /** @src -1:-1:-1 */ _1)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(add(memPtr, 160), /** @src -1:-1:-1 */ _1)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(add(memPtr, 192), /** @src -1:-1:-1 */ _1)
+                /// @src 0:10429:10458  "payload.slice(0,1).toUint8(0)"
+                let expr := fun_toUint8(/** @src 0:10429:10447  "payload.slice(0,1)" */ fun_slice_7138(var_payload_mpos))
+                /// @src 0:10478:10510  "payload.slice(1,32).toBytes32(0)"
+                let expr_1 := fun_toBytes32(/** @src 0:10478:10497  "payload.slice(1,32)" */ fun_slice_7140(var_payload_mpos))
+                /// @src 0:10531:10564  "payload.slice(33,32).toBytes32(0)"
+                let expr_2 := fun_toBytes32(/** @src 0:10531:10551  "payload.slice(33,32)" */ fun_slice_7142(var_payload_mpos))
+                /// @src 0:10588:10621  "payload.slice(65,32).toBytes32(0)"
+                let expr_3 := fun_toBytes32(/** @src 0:10588:10608  "payload.slice(65,32)" */ fun_slice_7144(var_payload_mpos))
+                /// @src 0:10640:10671  "payload.slice(97,8).toUint64(0)"
+                let expr_4 := fun_toUint64(/** @src 0:10640:10659  "payload.slice(97,8)" */ fun_slice(var_payload_mpos))
+                /// @src 0:10695:10727  "payload.slice(105,2).toUint16(0)"
+                let expr_5 := fun_toUint16(/** @src 0:10695:10715  "payload.slice(105,2)" */ fun_slice_7148(var_payload_mpos))
+                /// @src 0:10749:10780  "payload.slice(107,1).toUint8(0)"
+                let expr_6 := fun_toUint8(/** @src 0:10749:10769  "payload.slice(107,1)" */ fun_slice_7150(var_payload_mpos))
+                /// @src 0:10375:10791  "RegistryStructs.Registration({..."
+                let expr_769_mpos := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ allocate_memory()
+                /// @src 0:10375:10791  "RegistryStructs.Registration({..."
+                write_to_memory_uint8(expr_769_mpos, expr)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                mstore(/** @src 0:10375:10791  "RegistryStructs.Registration({..." */ add(expr_769_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 32), expr_1)
+                mstore(/** @src 0:10375:10791  "RegistryStructs.Registration({..." */ add(expr_769_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 64), expr_2)
+                mstore(/** @src 0:10375:10791  "RegistryStructs.Registration({..." */ add(expr_769_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 96), expr_3)
+                /// @src 0:10375:10791  "RegistryStructs.Registration({..."
+                write_to_memory_uint64(add(expr_769_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 128), /** @src 0:10375:10791  "RegistryStructs.Registration({..." */ expr_4)
+                write_to_memory_uint16(add(expr_769_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 160), /** @src 0:10375:10791  "RegistryStructs.Registration({..." */ expr_5)
+                write_to_memory_uint8(add(expr_769_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 192), /** @src 0:10375:10791  "RegistryStructs.Registration({..." */ expr_6)
+                /// @src 0:10801:10815  "return decoded"
+                var_mpos := expr_769_mpos
+            }
+            /// @ast-id 803 @src 0:10828:11162  "function encodeRegistration(RegistryStructs.Registration memory reg) public pure returns (bytes memory encoded) {..."
+            function fun_encodeRegistration(var_reg_mpos) -> var_encoded_mpos
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _1 := mload(/** @src 0:10990:11003  "reg.payloadID" */ var_reg_mpos)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _2 := mload(/** @src 0:11017:11025  "reg.node" */ add(var_reg_mpos, 32))
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _3 := mload(/** @src 0:11039:11048  "reg.owner" */ add(var_reg_mpos, 64))
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _4 := mload(/** @src 0:11062:11074  "reg.resolver" */ add(var_reg_mpos, 96))
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _5 := mload(/** @src 0:11088:11095  "reg.ttl" */ add(var_reg_mpos, 128))
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _6 := mload(/** @src 0:11109:11121  "reg.srcChain" */ add(var_reg_mpos, 160))
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _7 := mload(/** @src 0:11135:11145  "reg.status" */ add(var_reg_mpos, 192))
+                /// @src 0:10960:11155  "abi.encodePacked(..."
+                let expr_799_mpos := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 0:11039:11048  "reg.owner" */ 64)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _8 := shl(248, 255)
+                mstore(/** @src 0:10960:11155  "abi.encodePacked(..." */ add(expr_799_mpos, /** @src 0:11017:11025  "reg.node" */ 32), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(shl(248, _1), _8))
+                mstore(add(/** @src 0:10960:11155  "abi.encodePacked(..." */ expr_799_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 33), _2)
+                mstore(add(/** @src 0:10960:11155  "abi.encodePacked(..." */ expr_799_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 65), _3)
+                mstore(add(/** @src 0:10960:11155  "abi.encodePacked(..." */ expr_799_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 97), _4)
+                mstore(add(/** @src 0:10960:11155  "abi.encodePacked(..." */ expr_799_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 129), and(shl(/** @src 0:11135:11145  "reg.status" */ 192, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _5), shl(192, 0xffffffffffffffff)))
+                mstore(add(/** @src 0:10960:11155  "abi.encodePacked(..." */ expr_799_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 137), and(shl(240, _6), shl(240, 65535)))
+                mstore(add(/** @src 0:10960:11155  "abi.encodePacked(..." */ expr_799_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 139), and(shl(248, _7), _8))
+                /// @src 0:10960:11155  "abi.encodePacked(..."
+                mstore(expr_799_mpos, 108)
+                finalize_allocation_13328(expr_799_mpos)
+                /// @src 0:10950:11155  "encoded = abi.encodePacked(..."
+                var_encoded_mpos := expr_799_mpos
+            }
+            /// @ast-id 843 @src 0:11298:11477  "function addressToBytes32(address addr) private pure returns (bytes32) {..."
+            function fun_addressToBytes32(var_addr) -> var
+            {
+                /// @src 0:11379:11423  "return bytes32(uint256(uint160(addr)) << 96)"
+                var := /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(shl(/** @src 0:11420:11422  "96" */ 0x60, /** @src 0:11402:11415  "uint160(addr)" */ var_addr), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(0xffffffffffffffffffffffff))
+            }
+            function require_helper_stringliteral_cca2(condition)
+            {
+                if iszero(condition)
+                {
+                    let memPtr := mload(64)
+                    mstore(memPtr, shl(229, 4594637))
+                    mstore(add(memPtr, 4), 32)
+                    mstore(add(memPtr, 36), 17)
+                    mstore(add(memPtr, 68), "slice_outOfBounds")
+                    revert(memPtr, 100)
+                }
+            }
+            /// @ast-id 1128 @src 4:8988:11700  "function slice(..."
+            function fun_slice_7138(var_bytes_mpos) -> var_mpos
+            {
+                /// @src 4:9210:9273  "require(_bytes.length >= _start + _length, \"slice_outOfBounds\")"
+                require_helper_stringliteral_cca2(/** @src 4:9218:9251  "_bytes.length >= _start + _length" */ iszero(lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:9218:9231  "_bytes.length" */ var_bytes_mpos), /** @src 0:10445:10446  "1" */ 0x01)))
+                /// @src 4:9317:11667  "assembly {..."
+                let var_tempBytes_mpos := mload(0x40)
+                let usr$mc := add(var_tempBytes_mpos, /** @src 0:10445:10446  "1" */ 0x01)
+                /// @src 4:9317:11667  "assembly {..."
+                let usr$end := add(var_tempBytes_mpos, 2)
+                let usr$cc := add(var_bytes_mpos, /** @src 0:10445:10446  "1" */ 0x01)
+                /// @src 4:9317:11667  "assembly {..."
+                for { }
+                lt(usr$mc, usr$end)
+                {
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    let _1 := 32
+                    /// @src 4:9317:11667  "assembly {..."
+                    usr$mc := add(usr$mc, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                    /// @src 4:9317:11667  "assembly {..."
+                    usr$cc := add(usr$cc, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                }
+                /// @src 4:9317:11667  "assembly {..."
+                { mstore(usr$mc, mload(usr$cc)) }
+                mstore(var_tempBytes_mpos, /** @src 0:10445:10446  "1" */ 0x01)
+                /// @src 4:9317:11667  "assembly {..."
+                mstore(0x40, and(add(usr$mc, /** @src 4:9168:9170  "31" */ 0x1f), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(31)))
+                /// @src 4:11677:11693  "return tempBytes"
+                var_mpos := var_tempBytes_mpos
+            }
+            /// @ast-id 1128 @src 4:8988:11700  "function slice(..."
+            function fun_slice_7140(var_bytes_mpos) -> var_mpos
+            {
+                /// @src 4:9210:9273  "require(_bytes.length >= _start + _length, \"slice_outOfBounds\")"
+                require_helper_stringliteral_cca2(/** @src 4:9218:9251  "_bytes.length >= _start + _length" */ iszero(lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:9218:9231  "_bytes.length" */ var_bytes_mpos), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 33)))
+                /// @src 4:9317:11667  "assembly {..."
+                let var_tempBytes_mpos := mload(0x40)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _1 := 32
+                /// @src 4:9317:11667  "assembly {..."
+                let usr$mc := add(var_tempBytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                /// @src 4:9317:11667  "assembly {..."
+                let usr$end := add(var_tempBytes_mpos, 0x40)
+                let usr$cc := add(var_bytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 33)
+                /// @src 4:9317:11667  "assembly {..."
+                for { }
+                lt(usr$mc, usr$end)
+                {
+                    usr$mc := add(usr$mc, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                    /// @src 4:9317:11667  "assembly {..."
+                    usr$cc := add(usr$cc, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                }
+                /// @src 4:9317:11667  "assembly {..."
+                { mstore(usr$mc, mload(usr$cc)) }
+                mstore(var_tempBytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                /// @src 4:9317:11667  "assembly {..."
+                mstore(0x40, and(add(usr$mc, /** @src 4:9168:9170  "31" */ 0x1f), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(31)))
+                /// @src 4:11677:11693  "return tempBytes"
+                var_mpos := var_tempBytes_mpos
+            }
+            /// @ast-id 1128 @src 4:8988:11700  "function slice(..."
+            function fun_slice_7142(var_bytes_mpos) -> var__mpos
+            {
+                /// @src 4:9210:9273  "require(_bytes.length >= _start + _length, \"slice_outOfBounds\")"
+                require_helper_stringliteral_cca2(/** @src 4:9218:9251  "_bytes.length >= _start + _length" */ iszero(lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:9218:9231  "_bytes.length" */ var_bytes_mpos), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 65)))
+                /// @src 4:9317:11667  "assembly {..."
+                let var_tempBytes_mpos := mload(0x40)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _1 := 32
+                /// @src 4:9317:11667  "assembly {..."
+                let usr$mc := add(var_tempBytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                /// @src 4:9317:11667  "assembly {..."
+                let usr$end := add(var_tempBytes_mpos, 0x40)
+                let usr$cc := add(var_bytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 65)
+                /// @src 4:9317:11667  "assembly {..."
+                for { }
+                lt(usr$mc, usr$end)
+                {
+                    usr$mc := add(usr$mc, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                    /// @src 4:9317:11667  "assembly {..."
+                    usr$cc := add(usr$cc, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                }
+                /// @src 4:9317:11667  "assembly {..."
+                { mstore(usr$mc, mload(usr$cc)) }
+                mstore(var_tempBytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                /// @src 4:9317:11667  "assembly {..."
+                mstore(0x40, and(add(usr$mc, /** @src 4:9168:9170  "31" */ 0x1f), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(31)))
+                /// @src 4:11677:11693  "return tempBytes"
+                var__mpos := var_tempBytes_mpos
+            }
+            /// @ast-id 1128 @src 4:8988:11700  "function slice(..."
+            function fun_slice_7144(var_bytes_mpos) -> var_mpos
+            {
+                /// @src 4:9210:9273  "require(_bytes.length >= _start + _length, \"slice_outOfBounds\")"
+                require_helper_stringliteral_cca2(/** @src 4:9218:9251  "_bytes.length >= _start + _length" */ iszero(lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:9218:9231  "_bytes.length" */ var_bytes_mpos), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 97)))
+                /// @src 4:9317:11667  "assembly {..."
+                let var_tempBytes_mpos := mload(0x40)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _1 := 32
+                /// @src 4:9317:11667  "assembly {..."
+                let usr$mc := add(var_tempBytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                /// @src 4:9317:11667  "assembly {..."
+                let usr$end := add(var_tempBytes_mpos, 0x40)
+                let usr$cc := add(var_bytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 97)
+                /// @src 4:9317:11667  "assembly {..."
+                for { }
+                lt(usr$mc, usr$end)
+                {
+                    usr$mc := add(usr$mc, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                    /// @src 4:9317:11667  "assembly {..."
+                    usr$cc := add(usr$cc, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                }
+                /// @src 4:9317:11667  "assembly {..."
+                { mstore(usr$mc, mload(usr$cc)) }
+                mstore(var_tempBytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                /// @src 4:9317:11667  "assembly {..."
+                mstore(0x40, and(add(usr$mc, /** @src 4:9168:9170  "31" */ 0x1f), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(31)))
+                /// @src 4:11677:11693  "return tempBytes"
+                var_mpos := var_tempBytes_mpos
+            }
+            /// @ast-id 1128 @src 4:8988:11700  "function slice(..."
+            function fun_slice(var_bytes_mpos) -> var_mpos
+            {
+                /// @src 4:9210:9273  "require(_bytes.length >= _start + _length, \"slice_outOfBounds\")"
+                require_helper_stringliteral_cca2(/** @src 4:9218:9251  "_bytes.length >= _start + _length" */ iszero(lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:9218:9231  "_bytes.length" */ var_bytes_mpos), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 105)))
+                /// @src 4:9317:11667  "assembly {..."
+                let var_tempBytes_mpos := mload(0x40)
+                let usr$mc := add(var_tempBytes_mpos, /** @src 0:10657:10658  "8" */ 0x08)
+                /// @src 4:9317:11667  "assembly {..."
+                let usr$end := add(var_tempBytes_mpos, 16)
+                let usr$cc := add(var_bytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 105)
+                /// @src 4:9317:11667  "assembly {..."
+                for { }
+                lt(usr$mc, usr$end)
+                {
+                    let _1 := 0x20
+                    usr$mc := add(usr$mc, _1)
+                    usr$cc := add(usr$cc, _1)
+                }
+                { mstore(usr$mc, mload(usr$cc)) }
+                mstore(var_tempBytes_mpos, /** @src 0:10657:10658  "8" */ 0x08)
+                /// @src 4:9317:11667  "assembly {..."
+                mstore(0x40, and(add(usr$mc, /** @src 4:9168:9170  "31" */ 0x1f), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(31)))
+                /// @src 4:11677:11693  "return tempBytes"
+                var_mpos := var_tempBytes_mpos
+            }
+            /// @ast-id 1128 @src 4:8988:11700  "function slice(..."
+            function fun_slice_7148(var_bytes_mpos) -> var_mpos
+            {
+                /// @src 4:9210:9273  "require(_bytes.length >= _start + _length, \"slice_outOfBounds\")"
+                require_helper_stringliteral_cca2(/** @src 4:9218:9251  "_bytes.length >= _start + _length" */ iszero(lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:9218:9231  "_bytes.length" */ var_bytes_mpos), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 107)))
+                /// @src 4:9317:11667  "assembly {..."
+                let var_tempBytes_mpos := mload(0x40)
+                let usr$mc := add(var_tempBytes_mpos, /** @src 0:10713:10714  "2" */ 0x02)
+                /// @src 4:9317:11667  "assembly {..."
+                let usr$end := add(var_tempBytes_mpos, 4)
+                let usr$cc := add(var_bytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 107)
+                /// @src 4:9317:11667  "assembly {..."
+                for { }
+                lt(usr$mc, usr$end)
+                {
+                    let _1 := 0x20
+                    usr$mc := add(usr$mc, _1)
+                    usr$cc := add(usr$cc, _1)
+                }
+                { mstore(usr$mc, mload(usr$cc)) }
+                mstore(var_tempBytes_mpos, /** @src 0:10713:10714  "2" */ 0x02)
+                /// @src 4:9317:11667  "assembly {..."
+                mstore(0x40, and(add(usr$mc, /** @src 4:9168:9170  "31" */ 0x1f), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(31)))
+                /// @src 4:11677:11693  "return tempBytes"
+                var_mpos := var_tempBytes_mpos
+            }
+            /// @ast-id 1128 @src 4:8988:11700  "function slice(..."
+            function fun_slice_7150(var_bytes_mpos) -> var_mpos
+            {
+                /// @src 4:9210:9273  "require(_bytes.length >= _start + _length, \"slice_outOfBounds\")"
+                require_helper_stringliteral_cca2(/** @src 4:9218:9251  "_bytes.length >= _start + _length" */ iszero(lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:9218:9231  "_bytes.length" */ var_bytes_mpos), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 108)))
+                /// @src 4:9317:11667  "assembly {..."
+                let var_tempBytes_mpos := mload(0x40)
+                let usr$mc := add(var_tempBytes_mpos, /** @src 0:10445:10446  "1" */ 0x01)
+                /// @src 4:9317:11667  "assembly {..."
+                let usr$end := add(var_tempBytes_mpos, 2)
+                let usr$cc := add(var_bytes_mpos, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ 108)
+                /// @src 4:9317:11667  "assembly {..."
+                for { }
+                lt(usr$mc, usr$end)
+                {
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    let _1 := 32
+                    /// @src 4:9317:11667  "assembly {..."
+                    usr$mc := add(usr$mc, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                    /// @src 4:9317:11667  "assembly {..."
+                    usr$cc := add(usr$cc, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                }
+                /// @src 4:9317:11667  "assembly {..."
+                { mstore(usr$mc, mload(usr$cc)) }
+                mstore(var_tempBytes_mpos, /** @src 0:10445:10446  "1" */ 0x01)
+                /// @src 4:9317:11667  "assembly {..."
+                mstore(0x40, and(add(usr$mc, /** @src 4:9168:9170  "31" */ 0x1f), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ not(31)))
+                /// @src 4:11677:11693  "return tempBytes"
+                var_mpos := var_tempBytes_mpos
+            }
+            /// @ast-id 1180 @src 4:12066:12368  "function toUint8(bytes memory _bytes, uint256 _start) internal pure returns (uint8) {..."
+            function fun_toUint8(var_bytes_mpos) -> var
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                if /** @src 4:12168:12195  "_bytes.length >= _start + 1" */ lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:12168:12181  "_bytes.length" */ var_bytes_mpos), /** @src 4:12194:12195  "1" */ 0x01)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                {
+                    let memPtr := mload(64)
+                    mstore(memPtr, shl(229, 4594637))
+                    mstore(add(memPtr, 4), 32)
+                    mstore(add(memPtr, 36), 19)
+                    mstore(add(memPtr, 68), "toUint8_outOfBounds")
+                    revert(memPtr, 100)
+                }
+                /// @src 4:12346:12361  "return tempUint"
+                var := /** @src 4:12255:12336  "assembly {..." */ mload(add(var_bytes_mpos, /** @src 4:12194:12195  "1" */ 0x01))
+            }
+            /// @ast-id 1206 @src 4:12374:12679  "function toUint16(bytes memory _bytes, uint256 _start) internal pure returns (uint16) {..."
+            function fun_toUint16(var_bytes_mpos) -> var_
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                if /** @src 4:12478:12505  "_bytes.length >= _start + 2" */ lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:12478:12491  "_bytes.length" */ var_bytes_mpos), /** @src 4:12504:12505  "2" */ 0x02)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                {
+                    let memPtr := mload(64)
+                    mstore(memPtr, shl(229, 4594637))
+                    mstore(add(memPtr, 4), 32)
+                    mstore(add(memPtr, 36), 20)
+                    mstore(add(memPtr, 68), "toUint16_outOfBounds")
+                    revert(memPtr, 100)
+                }
+                /// @src 4:12657:12672  "return tempUint"
+                var_ := /** @src 4:12566:12647  "assembly {..." */ mload(add(var_bytes_mpos, /** @src 4:12504:12505  "2" */ 0x02))
+            }
+            /// @ast-id 1258 @src 4:12996:13301  "function toUint64(bytes memory _bytes, uint256 _start) internal pure returns (uint64) {..."
+            function fun_toUint64(var__bytes_mpos) -> var
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                if /** @src 4:13100:13127  "_bytes.length >= _start + 8" */ lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:13100:13113  "_bytes.length" */ var__bytes_mpos), /** @src 4:13126:13127  "8" */ 0x08)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                {
+                    let memPtr := mload(64)
+                    mstore(memPtr, shl(229, 4594637))
+                    mstore(add(memPtr, 4), 32)
+                    mstore(add(memPtr, 36), 20)
+                    mstore(add(memPtr, 68), "toUint64_outOfBounds")
+                    revert(memPtr, 100)
+                }
+                /// @src 4:13279:13294  "return tempUint"
+                var := /** @src 4:13188:13269  "assembly {..." */ mload(add(var__bytes_mpos, /** @src 4:13126:13127  "8" */ 0x08))
+            }
+            /// @ast-id 1362 @src 4:14253:14573  "function toBytes32(bytes memory _bytes, uint256 _start) internal pure returns (bytes32) {..."
+            function fun_toBytes32(var_bytes_mpos) -> var
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                if /** @src 4:14359:14387  "_bytes.length >= _start + 32" */ lt(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(/** @src 4:14359:14372  "_bytes.length" */ var_bytes_mpos), /** @src 4:14385:14387  "32" */ 0x20)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                {
+                    let memPtr := mload(64)
+                    mstore(memPtr, shl(229, 4594637))
+                    mstore(add(memPtr, 4), /** @src 4:14385:14387  "32" */ 0x20)
+                    /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                    mstore(add(memPtr, 36), 21)
+                    mstore(add(memPtr, 68), "toBytes32_outOfBounds")
+                    revert(memPtr, 100)
+                }
+                /// @src 4:14548:14566  "return tempBytes32"
+                var := /** @src 4:14453:14538  "assembly {..." */ mload(add(var_bytes_mpos, /** @src 4:14385:14387  "32" */ 0x20))
+            }
+            /// @ast-id 1470 @src 6:1359:1489  "function _checkOwner() internal view virtual {..."
+            function fun_checkOwner()
+            {
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let cleaned := and(sload(/** @src 6:1273:1279  "_owner" */ 0x00), /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ sub(shl(160, 1), 1))
+                if iszero(/** @src 6:1422:1445  "owner() == _msgSender()" */ eq(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ cleaned, /** @src 7:719:729  "msg.sender" */ caller()))
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                {
+                    let memPtr := mload(64)
+                    mstore(memPtr, shl(229, 4594637))
+                    mstore(add(memPtr, 4), 32)
+                    mstore(add(memPtr, 36), 32)
+                    mstore(add(memPtr, 68), "Ownable: caller is not the owner")
+                    revert(memPtr, 100)
+                }
+            }
+            /// @ast-id 1447 @src 6:1063:1125  "modifier onlyOwner() {..."
+            function modifier_onlyOwner_1474()
+            {
+                fun_checkOwner()
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _1 := sload(0)
+                sstore(0, and(_1, shl(160, 0xffffffffffffffffffffffff)))
+                /// @src 6:2573:2613  "OwnershipTransferred(oldOwner, newOwner)"
+                log3(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(64), 0, /** @src 6:2573:2613  "OwnershipTransferred(oldOwner, newOwner)" */ 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(_1, sub(shl(160, 1), 1)), 0)
+            }
+            /// @ast-id 1447 @src 6:1063:1125  "modifier onlyOwner() {..."
+            function modifier_onlyOwner_1490(var_newOwner)
+            {
+                fun_checkOwner()
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                let _1 := sub(shl(160, 1), 1)
+                let _2 := and(/** @src 6:2169:2191  "newOwner != address(0)" */ var_newOwner, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _1)
+                if /** @src 6:2169:2191  "newOwner != address(0)" */ iszero(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ _2)
+                {
+                    let memPtr := mload(64)
+                    mstore(memPtr, shl(229, 4594637))
+                    mstore(add(memPtr, 4), 32)
+                    mstore(add(memPtr, 36), 38)
+                    mstore(add(memPtr, 68), "Ownable: new owner is the zero a")
+                    mstore(add(memPtr, 100), "ddress")
+                    revert(memPtr, 132)
+                }
+                let _3 := sload(/** @src 6:2525:2531  "_owner" */ 0x00)
+                /// @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..."
+                sstore(/** @src 6:2525:2531  "_owner" */ 0x00, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ or(and(_3, shl(160, 0xffffffffffffffffffffffff)), _2))
+                /// @src 6:2573:2613  "OwnershipTransferred(oldOwner, newOwner)"
+                log3(/** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ mload(64), /** @src 6:2525:2531  "_owner" */ 0x00, /** @src 6:2573:2613  "OwnershipTransferred(oldOwner, newOwner)" */ 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0, /** @src 0:445:11479  "contract DotRegistry is Dot, Ownable {..." */ and(_3, _1), /** @src 6:2573:2613  "OwnershipTransferred(oldOwner, newOwner)" */ var_newOwner)
+            }
+        }
+        data ".metadata" hex"a3646970667358221220f4648ef94f731fe17d174f3bc01fe47e409eb845d52942941d2bbaccdd6a7ff36c6578706572696d656e74616cf564736f6c63430008090041"
+    }
+}
+
+Optimized IR:
+
+Optimized IR:
+
+Optimized IR:
+
+Optimized IR:
+/*=====================================================*
+ *                       WARNING                       *
+ *  Solidity to Yul compilation is still EXPERIMENTAL  *
+ *       It can result in LOSS OF FUNDS or worse       *
+ *                !USE AT YOUR OWN RISK!               *
+ *=====================================================*/
+
+/// @use-src 4:"contracts/libs/BytesLib.sol"
+object "BytesLib_1397" {
+    code {
+        {
+            /// @src 4:493:18601  "library BytesLib {..."
+            mstore(64, 128)
+            if callvalue() { revert(0, 0) }
+            let _1 := datasize("BytesLib_1397_deployed")
+            codecopy(128, dataoffset("BytesLib_1397_deployed"), _1)
+            setimmutable(128, "library_deploy_address", address())
+            return(128, _1)
+        }
+    }
+    /// @use-src 4:"contracts/libs/BytesLib.sol"
+    object "BytesLib_1397_deployed" {
+        code {
+            {
+                /// @src 4:493:18601  "library BytesLib {..."
+                mstore(64, 128)
+                revert(0, 0)
+            }
+        }
+        data ".metadata" hex"a3646970667358221220cb79bdc0e4299af08d25080f684034166c6eaeddc3be7b860e135c069427d7606c6578706572696d656e74616cf564736f6c63430008090041"
+    }
+}
+
+Optimized IR:
+/*=====================================================*
+ *                       WARNING                       *
+ *  Solidity to Yul compilation is still EXPERIMENTAL  *
+ *       It can result in LOSS OF FUNDS or worse       *
+ *                !USE AT YOUR OWN RISK!               *
+ *=====================================================*/
+
+/// @use-src 5:"contracts/structs/RegistryStructs.sol"
+object "RegistryStructs_1415" {
+    code {
+        {
+            /// @src 5:64:1397  "contract RegistryStructs {..."
+            mstore(64, 128)
+            if callvalue() { revert(0, 0) }
+            let _1 := datasize("RegistryStructs_1415_deployed")
+            codecopy(128, dataoffset("RegistryStructs_1415_deployed"), _1)
+            return(128, _1)
+        }
+    }
+    /// @use-src 5:"contracts/structs/RegistryStructs.sol"
+    object "RegistryStructs_1415_deployed" {
+        code {
+            {
+                /// @src 5:64:1397  "contract RegistryStructs {..."
+                mstore(64, 128)
+                revert(0, 0)
+            }
+        }
+        data ".metadata" hex"a3646970667358221220dad3b10409d7e88812962eb39ee50415e4fb7e74b8e07e653bda1f222f8a8bca6c6578706572696d656e74616cf564736f6c63430008090041"
+    }
+}
+
+Optimized IR:
+
+Optimized IR:
+
